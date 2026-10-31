@@ -11,36 +11,49 @@ require_once __DIR__ . '/../../Conection/get_assign.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <?php include __DIR__ . '/../../menu.php'; ?>
-    <h2><?= $is_pindah ? 'Pindah Kamar' : 'Assign Kamar'; ?></h2>
 
-    <p>Penghuni: <strong><?= htmlspecialchars($info['nama_lengkap']); ?></strong></p>
-    <?php if ($is_pindah) { ?>
-        <p>Kamar saat ini: <strong><?= htmlspecialchars($info['nomor_kamar']); ?></strong></p>
-    <?php } ?>
+    <div class="container mt-4 mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h3 mb-0"><?= $is_pindah ? 'Pindah Kamar' : 'Assign Kamar'; ?></h2>
+            </div>
 
-    <?php if (mysqli_num_rows($kamar) === 0) { ?>
-        <p style="color:red;">Tidak ada kamar kosong.</p>
-    <?php } else { ?>
-        <form action="../../Conection/proses_assign.php" method="POST">
-            <input type="hidden" name="id_assign" value="<?= $id_assign; ?>">
-
-            <label>Pilih Kamar</label><br>
-            <select name="id_kamar" required>
-                <option value="">-- pilih kamar --</option>
-                <?php while ($k = mysqli_fetch_assoc($kamar)) { ?>
-                    <option value="<?= $k['id']; ?>">
-                        <?= htmlspecialchars($k['nomor_kamar']); ?> - Rp <?= number_format($k['harga'], 0, ',', '.'); ?>
-                    </option>
+            <div class="card-body">
+                <p class="mb-1">Penghuni: <strong><?= htmlspecialchars($info['nama_lengkap']); ?></strong></p>
+                <?php if ($is_pindah) { ?>
+                    <p>Kamar saat ini: <strong><?= htmlspecialchars($info['nomor_kamar']); ?></strong></p>
                 <?php } ?>
-            </select>
-            <br><br>
 
-            <button type="submit"><?= $is_pindah ? 'Pindah' : 'Assign'; ?></button>
-            <a href="../Penghuni/index.php">Batal</a>
-        </form>
-    <?php } ?>
+                <?php if (mysqli_num_rows($kamar) === 0) { ?>
+                    <div class="alert alert-danger mt-3 mb-3">Tidak ada kamar kosong.</div>
+                    <a href="../Penghuni/index.php" class="btn btn-secondary">Kembali</a>
+                <?php } else { ?>
+                    <form action="../../Conection/proses_assign.php" method="POST" class="mt-3">
+                        <input type="hidden" name="id_assign" value="<?= $id_assign; ?>">
+
+                        <div class="mb-3">
+                            <label for="id_kamar" class="form-label">Pilih Kamar</label>
+                            <select name="id_kamar" id="id_kamar" class="form-select" required>
+                                <option value="">-- pilih kamar --</option>
+                                <?php while ($k = mysqli_fetch_assoc($kamar)) { ?>
+                                    <option value="<?= $k['id']; ?>">
+                                        <?= htmlspecialchars($k['nomor_kamar']); ?> - Rp <?= number_format($k['harga'], 0, ',', '.'); ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">
+                            <?= $is_pindah ? 'Pindah' : 'Assign'; ?>
+                        </button>
+                        <a href="../Penghuni/index.php" class="btn btn-secondary">Batal</a>
+                    </form>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
