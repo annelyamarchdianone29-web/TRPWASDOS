@@ -53,7 +53,7 @@ if (isset($_POST['id'])) {
         $_SESSION['alert'] = [
             'icon' => 'success',
             'title' => 'berhasil',
-            'text' => 'kamar berhasil diedit'
+            'text' => 'kamar berhasil diupdate'
         ];
         header("Location: ../View/Kamar/index.php"); // ini untuk ganti url
         exit;

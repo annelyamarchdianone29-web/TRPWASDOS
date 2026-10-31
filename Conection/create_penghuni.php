@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/koneksi.php';
 
-$pesan = '';
-
 session_start();
 if (isset($_POST['simpan'])) {
     $no_hp = trim($_POST['no_hp']);
@@ -18,7 +16,9 @@ if (isset($_POST['simpan'])) {
     $result_cek = mysqli_stmt_get_result($stmt_cek);
 
     if (mysqli_num_rows($result_cek) > 0) {
-        $pesan = "Nomor HP sudah terdaftar!";
+        $_SESSION['pesan'] = "Nomor HP sudah terdaftar!";
+        header("Location: ../View/Penghuni/create.php");
+        exit;
     } else {
         mysqli_begin_transaction($conn);
 
@@ -59,13 +59,15 @@ if (isset($_POST['simpan'])) {
             $_SESSION['alert'] = [
                 'icon' => 'success',
                 'title' => 'berhasil',
-                'text' => 'kamar berhasil ditambahkan'
+                'text' => 'penghuni berhasil ditambahkan'
             ];
-            header("Location: index.php");
+            header("Location: ../View/Penghuni/index.php");
             exit;
         } catch (mysqli_sql_exception $e) {
             mysqli_rollback($conn);
-            $pesan = "Gagal menyimpan data penghuni. Periksa kembali struktur tabel." . $e;
+            $_SESSION['pesan'] = "Gagal menyimpan data penghuni. Periksa kembali struktur tabel.";
+            header("Location: ../View/Penghuni/create.php");
+            exit;
         }
     }
 }

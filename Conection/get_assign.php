@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/koneksi.php';
 
+session_start();
 if (!isset($_GET['id_assign'])) {
     die("ID assign tidak ditemukan.");
 }

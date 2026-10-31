@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/koneksi.php';
 
+session_start();
 $sql_read = "SELECT
                 p.id,
                 p.no_hp,

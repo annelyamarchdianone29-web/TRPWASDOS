@@ -28,12 +28,13 @@ try {
     $id_kamar_lama = $assign['id_kamar'];
 
     // 2. pastikan kamar baru masih kosong dan aktif (cegah dua orang rebutan kamar)
-    $stmt = mysqli_prepare($conn, "SELECT id FROM m_kamar
+    $stmt = mysqli_prepare($conn, "SELECT id, harga FROM m_kamar
                                    WHERE id = ? AND status_kamar = 0 AND is_active = 0
                                    FOR UPDATE");
     mysqli_stmt_bind_param($stmt, "i", $id_kamar_baru);
     mysqli_stmt_execute($stmt);
-    if (!mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))) {
+    $kamar_baru = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+    if (!$kamar_baru) {
         throw new Exception("Kamar sudah terisi atau tidak aktif.");
     }
 
@@ -55,18 +56,24 @@ try {
     mysqli_stmt_execute($stmt);
 
     // 6. buat tagihan unpaid (kode_transaksi diisi otomatis oleh trigger)
-    $stmt = mysqli_prepare($conn, "INSERT INTO t_pembayaran (id_t_assign_penghuni, status)
-                                   VALUES (?, 0)");
-    mysqli_stmt_bind_param($stmt, "i", $id_assign);
+    $stmt = mysqli_prepare($conn, "INSERT INTO t_pembayaran (id_t_assign_penghuni, nominal_pembayaran, status)
+                                   VALUES (?, ?, 0)");
+    mysqli_stmt_bind_param($stmt, "id", $id_assign, $kamar_baru['harga']);
     mysqli_stmt_execute($stmt);
 
     mysqli_commit($conn);
+    if ($id_kamar_lama !== null) {
+        $pesan = 'Penghuni berhasil dipindahkan ke kamar baru';
+    } else {
+        $pesan = 'Kamar berhasil di-assign ke penghuni';
+    }
+
     $_SESSION['alert'] = [
         'icon' => 'success',
-        'title' => 'berhasil',
-        'text' => 'kamar berhasil ditambahkan'
+        'title' => 'Berhasil',
+        'text' => $pesan
     ];
-    header("Location: ../Penghuni/index.php");
+    header("Location: ../View/Penghuni/index.php");
     exit;
 } catch (Exception $e) {
     mysqli_rollback($conn);

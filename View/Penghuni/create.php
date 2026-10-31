@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../../Conection/create_penghuni.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -28,19 +31,11 @@
 
                     <!-- Form -->
                     <div class="card-body p-4">
-                        <form action="../../Conection/create_penghuni.php" method="POST">
+                        <form method="POST">
 
                             <p class="text-muted mb-4">
                                 Silakan isi formulir berikut untuk menambahkan data penghuni.
                             </p>
-
-                            <!-- Pesan Error -->
-                            <?php if ($pesan != '') { ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <?= htmlspecialchars($pesan); ?>
-                                </div>
-                            <?php } ?>
-
 
                             <!-- Nomor HP -->
                             <div class="mb-3">
@@ -113,18 +108,26 @@
                     </div>
                 </div>
 
-                <!-- Footer -->
-                <p class="text-center text-muted mt-3 small">
-                    Sistem Manajemen Penghuni
-                </p>
-
             </div>
         </div>
     </div>
 
     <!-- Bootstrap 5 JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if (isset($_SESSION['alert'])): ?>
+        <script>
+            Swal.fire({
+                icon: '<?= $_SESSION['alert']['icon'] ?>',
+                title: <?= json_encode($_SESSION['alert']['title']) ?>,
+                text: <?= json_encode($_SESSION['alert']['text']) ?>,
+                confirmButtonColor: '#349321',
+                confirmButtonText: 'OK',
+                timer: 2500
+            })
+        </script>
+        <?php unset($_SESSION['alert']); ?>
+    <?php endif; ?>
 </body>
 
 </html>

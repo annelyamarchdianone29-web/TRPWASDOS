@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/koneksi.php';
 
+session_start();
 if (isset($_GET['id'])) {
     //konversikan parameter id yang dikirim di url (string) menjadi int    
     $id_target = (int) $_GET['id'];

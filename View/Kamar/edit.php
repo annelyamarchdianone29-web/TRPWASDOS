@@ -89,6 +89,20 @@ require_once __DIR__ . '/../../Conection/get_kamar.php';
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if (isset($_SESSION['alert'])): ?>
+        <script>
+            Swal.fire({
+                icon: '<?= $_SESSION['alert']['icon'] ?>',
+                title: <?= json_encode($_SESSION['alert']['title']) ?>,
+                text: <?= json_encode($_SESSION['alert']['text']) ?>,
+                confirmButtonColor: '#349321',
+                confirmButtonText: 'OK',
+                timer: 2500
+            })
+        </script>
+        <?php unset($_SESSION['alert']); ?>
+    <?php endif; ?>
 </body>
 
 </html>
