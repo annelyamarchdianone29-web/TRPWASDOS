@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+/* ---------- Dasar ---------- */
+body,
+body.bg-light {
+  font-family: "Inter", sans-serif;
+  background-color: #fbf9f8 !important;
+  color: #2b2627;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Navbar (logo kiri, menu kanan) ---------- */
+.navbar {
+  --bs-navbar-color: #786f71;
+  --bs-navbar-hover-color: #2b2627;
+  --bs-navbar-active-color: #2b2627;
+  --bs-navbar-brand-color: #2b2627;
+  --bs-navbar-brand-hover-color: #2b2627;
+  justify-content: space-between;
+  padding: 1.25rem 3rem !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e6dfdd;
+}
+
+.navbar .navbar-brand {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #2b2627;
+  text-transform: uppercase;
+  margin-right: 0;
+}
+
+.navbar .navbar-nav {
+  margin-left: auto;
+  gap: 2rem;
+}
+
+.navbar .nav-link {
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #786f71;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  padding: 0 0 4px 0;
+  border-bottom: 1.5px solid transparent;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #2b2627;
+  border-bottom-color: #2b2627;
+}
+
+/* ---------- Container utama ---------- */
+.container {
+  max-width: 1100px;
+}
+
+/* ---------- Kartu ---------- */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e6dfdd !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(58, 50, 53, 0.03) !important;
+  overflow: hidden;
+}
+
+.card-header,
+.card-header.bg-primary {
+  background-color: #faf7f6 !important;
+  color: #2b2627 !important;
+  border-bottom: 1px solid #e6dfdd;
+}
+
+.card-header h2,
+.card-header h3,
+.card-header h4 {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+}
+
+/* ---------- Tabel ---------- */
+.table {
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #2b2627;
+  --bs-table-border-color: #e6dfdd;
+  --bs-table-striped-bg: #fdfbfa;
+  --bs-table-striped-color: #2b2627;
+  --bs-table-hover-bg: #faf7f6;
+  --bs-table-hover-color: #2b2627;
+  font-size: 0.88rem;
+}
+
+.table > :not(caption) > * > * {
+  padding: 1rem 1.25rem;
+}
+
+.table thead,
+.table > thead.table-dark,
+.table-dark {
+  --bs-table-bg: #faf7f6;
+  --bs-table-color: #2b2627;
+  --bs-table-border-color: #e6dfdd;
+  --bs-table-striped-bg: #faf7f6;
+  --bs-table-hover-bg: #faf7f6;
+}
+
+.table thead th {
+  font-family: "Cinzel", serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #2b2627;
+  background-color: #faf7f6;
+  border-bottom: 1px solid #e6dfdd;
+}
+
+/* ---------- Tombol (seragam) ---------- */
+.btn {
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  --bs-btn-border-radius: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-danger {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #3a3235;
+  --bs-btn-border-color: #3a3235;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #52464c;
+  --bs-btn-hover-border-color: #52464c;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #52464c;
+  --bs-btn-active-border-color: #52464c;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #3a3235;
+  --bs-btn-disabled-border-color: #3a3235;
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  --bs-btn-color: #3a3235;
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: #3a3235;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #3a3235;
+  --bs-btn-hover-border-color: #3a3235;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #3a3235;
+  --bs-btn-active-border-color: #3a3235;
+  --bs-btn-disabled-color: #3a3235;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #3a3235;
+}
+
+/* ---------- Tombol aksi di tabel: ukuran & posisi konsisten ---------- */
+.table .btn {
+  white-space: nowrap;
+}
+
+.table form {
+  margin: 0;
+}
+
+.table td .d-flex {
+  display: grid !important;
+  grid-template-columns: 5.5rem 12rem;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.table td .d-flex > .btn,
+.table td .d-flex > form,
+.table td .d-flex > form .btn {
+  width: 100%;
+}
+
+.table td > .btn,
+.table td > form > .btn {
+  min-width: 9rem;
+}
+
+.btn,
+.btn-sm {
+  --bs-btn-padding-x: 1.4rem;
+  --bs-btn-padding-y: 0.55rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.table .btn {
+  padding-left: 1.4rem !important;
+  padding-right: 1.4rem !important;
+}
+
+form[id^="delete-form"] .btn {
+  --bs-btn-bg: #733015;
+  --bs-btn-border-color: #733015;
+  --bs-btn-hover-bg: #622912;
+  --bs-btn-hover-border-color: #622912;
+  --bs-btn-active-bg: #622912;
+  --bs-btn-active-border-color: #622912;
+}
+
+form[id^="active-form"] .btn {
+  --bs-btn-bg: #9b9267;
+  --bs-btn-border-color: #9b9267;
+  --bs-btn-hover-bg: #847c58;
+  --bs-btn-hover-border-color: #847c58;
+  --bs-btn-active-bg: #847c58;
+  --bs-btn-active-border-color: #847c58;
+}
+
+/* ---------- Form ---------- */
+.form-control,
+.form-select {
+  border-color: #e6dfdd;
+  border-radius: 2px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3a3235;
+  box-shadow: 0 0 0 0.2rem rgba(58, 50, 53, 0.12);
+}
+
+.form-label {
+  font-size: 0.85rem;
+  color: #786f71;
+}
+
+/* ---------- Status Paid / Unpaid ---------- */
+.badge,
+.badge.bg-success,
+.badge.bg-danger {
+  display: inline;
+  min-width: 0;
+  padding: 0 !important;
+  background-color: transparent !important;
+  border: 0;
+  border-radius: 0;
+  color: #2b2627 !important;
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  text-align: left;
+}
